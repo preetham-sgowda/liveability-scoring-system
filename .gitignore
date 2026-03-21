@@ -1,0 +1,50 @@
+# ── Python ──
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+
+# ── Environment ──
+.env
+*.env
+!.env.example
+
+# ── Data (large files) ──
+data/*.pdf
+data/*.csv
+!data/census_sample.csv
+data/gtfs_raw/
+data/ndvi_rasters/
+
+# ── IDE ──
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── OS ──
+.DS_Store
+Thumbs.db
+
+# ── Docker ──
+pgdata/
+
+# ── Airflow ──
+logs/
+airflow.db
+airflow.cfg
+webserver_config.py
+
+# ── dbt ──
+dbt_lss/target/
+dbt_lss/dbt_packages/
+dbt_lss/logs/
+
+# ── GEE credentials ──
+*-service-account-key.json
