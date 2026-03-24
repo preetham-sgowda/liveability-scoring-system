@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS marts.mart_ward_features (
     ward_id             INTEGER NOT NULL REFERENCES raw.ward_boundaries(ward_id),
     ward_name           VARCHAR(200) NOT NULL,
     ward_number         INTEGER,
+    city                VARCHAR(100),
     zone_name           VARCHAR(100),
     year                INTEGER NOT NULL,
 

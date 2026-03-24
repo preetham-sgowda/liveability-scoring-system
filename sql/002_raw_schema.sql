@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS raw.ward_boundaries (
     ward_id         SERIAL PRIMARY KEY,
     ward_name       VARCHAR(200) NOT NULL,
     ward_number     INTEGER,
+    city            VARCHAR(100) NOT NULL,
     zone_name       VARCHAR(100),
     area_sqkm       NUMERIC(10, 4),
     geom            GEOMETRY(MultiPolygon, 4326) NOT NULL,
@@ -31,7 +32,27 @@ CREATE TABLE IF NOT EXISTS raw.ncrb_crime (
 );
 CREATE INDEX IF NOT EXISTS idx_ncrb_crime_city_year ON raw.ncrb_crime (city, year);
 
--- ── 2. BBMP Sahaaya Complaints ──
+-- ── 2. Unified Civic Complaints ──
+CREATE TABLE IF NOT EXISTS raw.civic_complaints (
+    id              SERIAL PRIMARY KEY,
+    city            VARCHAR(100) NOT NULL,
+    complaint_id    VARCHAR(50),
+    category        VARCHAR(200),
+    subcategory     VARCHAR(200),
+    ward_name       VARCHAR(200),
+    ward_number     INTEGER,
+    date_filed      DATE,
+    status          VARCHAR(50),
+    description     TEXT,
+    latitude        NUMERIC(10, 7),
+    longitude       NUMERIC(10, 7),
+    ingested_at     TIMESTAMPTZ DEFAULT NOW(),
+    UNIQUE (city, complaint_id)
+);
+CREATE INDEX IF NOT EXISTS idx_civic_complaints_city_ward ON raw.civic_complaints (city, ward_name);
+CREATE INDEX IF NOT EXISTS idx_civic_complaints_date ON raw.civic_complaints (date_filed);
+
+-- Legacy BBMP Sahaaya Complaints (kept for backward compatibility or migrated)
 CREATE TABLE IF NOT EXISTS raw.bbmp_complaints (
     id              SERIAL PRIMARY KEY,
     complaint_id    VARCHAR(50) UNIQUE,
@@ -66,7 +87,8 @@ CREATE TABLE IF NOT EXISTS raw.cpcb_aqi (
     o3              NUMERIC(8, 2),
     aqi             INTEGER,
     prominent_pollutant VARCHAR(20),
-    ingested_at     TIMESTAMPTZ DEFAULT NOW()
+    ingested_at     TIMESTAMPTZ DEFAULT NOW(),
+    UNIQUE (station_id, date)
 );
 CREATE INDEX IF NOT EXISTS idx_cpcb_aqi_station_date ON raw.cpcb_aqi (station_id, date);
 
@@ -75,6 +97,7 @@ CREATE TABLE IF NOT EXISTS raw.census (
     id              SERIAL PRIMARY KEY,
     ward_name       VARCHAR(200),
     ward_number     INTEGER,
+    city            VARCHAR(100),
     population      INTEGER,
     male_population INTEGER,
     female_population INTEGER,

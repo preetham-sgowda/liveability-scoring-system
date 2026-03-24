@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: mart_ward_features
+    description: >
+      Final wide feature table for ML consumption.
+      One row per ward per year (198 wards × 7 years = ~1,386 rows).
+      Consumed by Preetham's EDA, composite scoring, KMeans clustering,
+      XGBoost decline predictor, and SHAP explainability layer.
+    columns:
+      - name: ward_id
+        description: "Foreign key to raw.ward_boundaries"
+        tests:
+          - not_null
+      - name: ward_name
+        tests: [not_null]
+      - name: year
+        tests:
+          - not_null
+          - accepted_values:
+              values: [2018, 2019, 2020, 2021, 2022, 2023, 2024]
+    tests:
+      - unique:
+          column_name: "ward_id || '-' || year"

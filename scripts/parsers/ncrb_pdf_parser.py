@@ -212,6 +212,10 @@ def _normalize_city_name(city: str) -> str:
     city_lower = city.lower().strip()
     if "bengaluru" in city_lower or "bangalore" in city_lower:
         return "Bengaluru"
+    if "delhi" in city_lower:
+        return "Delhi"
+    if "mumbai" in city_lower:
+        return "Mumbai"
     return city.strip().title()
 
 

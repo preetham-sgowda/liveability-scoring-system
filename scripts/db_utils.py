@@ -22,8 +22,8 @@ logger = logging.getLogger(__name__)
 def get_connection_params() -> dict:
     """Return DB connection params from environment variables."""
     return {
-        "host": os.getenv("POSTGRES_HOST", "postgres"),
-        "port": int(os.getenv("POSTGRES_PORT", 5432)),
+        "host": os.getenv("POSTGRES_HOST", "localhost"),
+        "port": int(os.getenv("POSTGRES_PORT", 5433)),
         "dbname": os.getenv("POSTGRES_DB", "lss_warehouse"),
         "user": os.getenv("POSTGRES_USER", "lss_user"),
         "password": os.getenv("POSTGRES_PASSWORD", "lss_password"),
@@ -158,6 +158,40 @@ def delete_and_insert(table: str, columns: list[str], rows: list[tuple],
 
 # ── Pipeline Run Logging ──
 
+def ensure_pipeline_runs_table_exists():
+    """Create raw.pipeline_runs audit table if missing (or alter schema if needed)."""
+    with get_db_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute("""
+                CREATE TABLE IF NOT EXISTS raw.pipeline_runs (
+                    run_id          UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+                    dag_id          VARCHAR(100) NOT NULL,
+                    task_id         VARCHAR(100),
+                    execution_date  TIMESTAMPTZ,
+                    status          VARCHAR(20) NOT NULL CHECK (status IN ('running', 'success', 'failed')),
+                    started_at      TIMESTAMPTZ DEFAULT NOW(),
+                    finished_at     TIMESTAMPTZ,
+                    records_loaded  INTEGER DEFAULT 0,
+                    error_message   TEXT,
+                    metadata        JSONB
+                );
+            """)
+            # Ensure columns exist for backward compatibility with older schema
+            cur.execute("""
+                ALTER TABLE raw.pipeline_runs
+                    ADD COLUMN IF NOT EXISTS started_at TIMESTAMPTZ DEFAULT NOW(),
+                    ADD COLUMN IF NOT EXISTS finished_at TIMESTAMPTZ,
+                    ADD COLUMN IF NOT EXISTS records_loaded INTEGER DEFAULT 0,
+                    ADD COLUMN IF NOT EXISTS error_message TEXT,
+                    ADD COLUMN IF NOT EXISTS metadata JSONB;
+            """)
+            cur.execute("""
+                CREATE INDEX IF NOT EXISTS idx_pipeline_runs_dag
+                    ON raw.pipeline_runs (dag_id, started_at DESC);
+            """)
+        conn.commit()
+
+
 def log_pipeline_start(dag_id: str, task_id: str = None,
                        execution_date: datetime = None) -> str:
     """
@@ -166,6 +200,7 @@ def log_pipeline_start(dag_id: str, task_id: str = None,
     Returns:
         run_id (UUID string)
     """
+    ensure_pipeline_runs_table_exists()
     run_id = str(uuid.uuid4())
     with get_db_connection() as conn:
         with conn.cursor() as cur:
@@ -183,6 +218,7 @@ def log_pipeline_start(dag_id: str, task_id: str = None,
 def log_pipeline_success(run_id: str, records_loaded: int = 0,
                          metadata: dict = None):
     """Log successful completion of a pipeline run."""
+    ensure_pipeline_runs_table_exists()
     with get_db_connection() as conn:
         with conn.cursor() as cur:
             cur.execute("""
@@ -201,6 +237,7 @@ def log_pipeline_success(run_id: str, records_loaded: int = 0,
 def log_pipeline_failure(run_id: str, error_message: str,
                          metadata: dict = None):
     """Log failed pipeline run."""
+    ensure_pipeline_runs_table_exists()
     with get_db_connection() as conn:
         with conn.cursor() as cur:
             cur.execute("""

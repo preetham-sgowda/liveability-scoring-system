@@ -1,0 +1,41 @@
+# requirements-airflow.txt
+# Stripped version pins to allow Airflow constraints to resolve conflicts
+
+# Data Parsing & Scraping
+pdfplumber
+scrapy
+
+# Database
+psycopg2-binary
+sqlalchemy
+
+# Geospatial
+geopandas
+rasterio
+rasterstats
+shapely
+h3
+
+# Google Earth Engine
+earthengine-api
+
+# Data Processing
+pandas
+numpy
+
+# HTTP & API
+requests
+redis
+
+# ML & Processing
+scikit-learn
+scipy
+
+# Configuration
+python-dotenv
+
+# dbt
+dbt-postgres
+
+# Testing
+pytest

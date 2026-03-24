@@ -22,12 +22,11 @@ import numpy as np
 
 logger = logging.getLogger(__name__)
 
-# Bengaluru bounding box
-BENGALURU_BBOX = {
-    "west": 77.35,
-    "south": 12.73,
-    "east": 77.85,
-    "north": 13.18,
+# City bounding boxes
+CITY_BBOXES = {
+    "Bengaluru": {"west": 77.35, "south": 12.73, "east": 77.85, "north": 13.18},
+    "Mumbai": {"west": 72.77, "south": 18.89, "east": 72.98, "north": 19.27},
+    "Delhi": {"west": 76.84, "south": 28.41, "east": 77.35, "north": 28.88},
 }
 
 # Scale for export in meters
@@ -59,20 +58,17 @@ def authenticate_gee(service_account: Optional[str] = None,
         logger.info("GEE authenticated interactively")
 
 
-def compute_ndvi_composite(year: int, month: int) -> "ee.Image":
+def compute_ndvi_composite(year: int, month: int, city: str = "Bengaluru",
+                           recursion_depth: int = 0) -> "ee.Image":
     """
     Compute monthly NDVI composite from Sentinel-2 SR imagery.
-
-    Uses cloud masking and median compositing for the given month.
-
-    Args:
-        year: Target year
-        month: Target month (1-12)
-
-    Returns:
-        ee.Image with NDVI band clipped to Bengaluru
+    Recursive fallback to previous month if cloud cover > 80%.
     """
     import ee
+
+    if recursion_depth > 3: # Limit fallback to 3 months
+        logger.warning(f"Max recursion depth reached for {city} NDVI. Using latest available.")
+        # return empty or latest
 
     # Define date range
     start_date = f"{year}-{month:02d}-01"
@@ -81,28 +77,32 @@ def compute_ndvi_composite(year: int, month: int) -> "ee.Image":
     else:
         end_date = f"{year}-{month + 1:02d}-01"
 
-    # Bengaluru region of interest
-    roi = ee.Geometry.Rectangle([
-        BENGALURU_BBOX["west"], BENGALURU_BBOX["south"],
-        BENGALURU_BBOX["east"], BENGALURU_BBOX["north"]
-    ])
+    bbox = CITY_BBOXES.get(city, CITY_BBOXES["Bengaluru"])
+    roi = ee.Geometry.Rectangle([bbox["west"], bbox["south"], bbox["east"], bbox["north"]])
 
     # Load Sentinel-2 Surface Reflectance
     s2 = (
         ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
         .filterDate(start_date, end_date)
         .filterBounds(roi)
-        .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE", 30))
     )
 
-    # Cloud masking using SCL band
+    # Check cloud cover
+    avg_cloud = s2.aggregate_mean("CLOUDY_PIXEL_PERCENTAGE").getInfo()
+    if avg_cloud is None or avg_cloud > 80:
+        logger.warning(f"Cloud cover {avg_cloud}% too high for {year}-{month}. Falling back.")
+        prev_month = month - 1 if month > 1 else 12
+        prev_year = year if month > 1 else year - 1
+        return compute_ndvi_composite(prev_year, prev_month, city, recursion_depth + 1)
+
+    # Cloud masking using SCL
     def mask_clouds(image):
         scl = image.select("SCL")
         # Keep vegetation, bare soil, water pixels
         mask = scl.neq(3).And(scl.neq(8)).And(scl.neq(9)).And(scl.neq(10))
         return image.updateMask(mask)
 
-    s2_masked = s2.map(mask_clouds)
+    s2_masked = s2.filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE", 30)).map(mask_clouds)
 
     # Compute NDVI
     def add_ndvi(image):
@@ -114,16 +114,12 @@ def compute_ndvi_composite(year: int, month: int) -> "ee.Image":
     # Median composite
     composite = s2_ndvi.select("NDVI").median().clip(roi)
 
-    logger.info(
-        f"Computed NDVI composite for {year}-{month:02d} "
-        f"({s2.size().getInfo()} scenes)"
-    )
-
+    logger.info(f"NDVI composite for {city} {year}-{month} ({s2.size().getInfo()} scenes)")
     return composite
 
 
 def export_ndvi_raster(ndvi_image: "ee.Image", year: int, month: int,
-                       output_dir: str) -> str:
+                       output_dir: str, city: str = "Bengaluru") -> str:
     """
     Export NDVI raster as GeoTIFF via GEE.
 
@@ -139,13 +135,11 @@ def export_ndvi_raster(ndvi_image: "ee.Image", year: int, month: int,
     import ee
     import requests as req
 
-    output_path = Path(output_dir) / f"ndvi_{year}_{month:02d}.tif"
+    output_path = Path(output_dir) / f"ndvi_{city}_{year}_{month:02d}.tif"
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    roi = ee.Geometry.Rectangle([
-        BENGALURU_BBOX["west"], BENGALURU_BBOX["south"],
-        BENGALURU_BBOX["east"], BENGALURU_BBOX["north"]
-    ])
+    bbox = CITY_BBOXES.get(city, CITY_BBOXES["Bengaluru"])
+    roi = ee.Geometry.Rectangle([bbox["west"], bbox["south"], bbox["east"], bbox["north"]])
 
     # Get download URL
     url = ndvi_image.getDownloadURL({

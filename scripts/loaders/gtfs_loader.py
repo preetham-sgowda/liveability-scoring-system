@@ -64,22 +64,23 @@ def parse_gtfs_stops(gtfs_dir: str,
     df["longitude"] = pd.to_numeric(df["longitude"], errors="coerce")
     df["source"] = source
 
-    # Filter to Bengaluru bounding box
-    bbox = {
-        "lat_min": 12.7,
-        "lat_max": 13.2,
-        "lon_min": 77.3,
-        "lon_max": 77.9,
-    }
+    # Filter to city bounding box
+    from scripts.geo.utils import CITY_BBOXES
+    city_name = "Bengaluru" # Default
+    if "BMTC" in source or "BMRCL" in source: city_name = "Bengaluru"
+    elif "BEST" in source or "MMRDA" in source: city_name = "Mumbai"
+    elif "DTC" in source or "DMRC" in source: city_name = "Delhi"
+    
+    bbox = CITY_BBOXES.get(city_name)
     mask = (
-        (df["latitude"] >= bbox["lat_min"]) &
-        (df["latitude"] <= bbox["lat_max"]) &
-        (df["longitude"] >= bbox["lon_min"]) &
-        (df["longitude"] <= bbox["lon_max"])
+        (df["latitude"] >= bbox["south"]) &
+        (df["latitude"] <= bbox["north"]) &
+        (df["longitude"] >= bbox["west"]) &
+        (df["longitude"] <= bbox["east"])
     )
     filtered = df[mask].copy()
     logger.info(
-        f"Filtered {len(filtered)}/{len(df)} stops within Bengaluru bbox"
+        f"Filtered {len(filtered)}/{len(df)} stops within {city_name} bbox"
     )
 
     # Include stop_desc if available

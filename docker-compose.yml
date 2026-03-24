@@ -1,19 +1,22 @@
-version: "3.8"
+# docker-compose.yml
 
 x-airflow-common: &airflow-common
-  image: apache/airflow:2.8.1-python3.11
+  build:
+    context: .
+    dockerfile: Airflow.Dockerfile
   environment:
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
-    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://lss_user:lss_password@postgres:5432/lss_warehouse
-    AIRFLOW__CORE__FERNET_KEY: ''
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DB}
+    AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW__CORE__FERNET_KEY}
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__CORE__ENABLE_XCOM_PICKLING: 'true'
-    POSTGRES_HOST: postgres
+    POSTGRES_HOST: ${POSTGRES_HOST}
     POSTGRES_PORT: '5432'
-    POSTGRES_DB: lss_warehouse
-    POSTGRES_USER: lss_user
-    POSTGRES_PASSWORD: lss_password
+    POSTGRES_DB: ${POSTGRES_DB}
+    POSTGRES_USER: ${POSTGRES_USER}
+    POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    # _PIP_ADDITIONAL_REQUIREMENTS: "..." (Moved to Airflow.Dockerfile)
   volumes:
     - ./dags:/opt/airflow/dags
     - ./scripts:/opt/airflow/scripts
@@ -29,11 +32,11 @@ services:
     image: postgis/postgis:15-3.3
     container_name: lss_postgres
     environment:
-      POSTGRES_DB: lss_warehouse
-      POSTGRES_USER: lss_user
-      POSTGRES_PASSWORD: lss_password
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./sql:/docker-entrypoint-initdb.d
@@ -90,6 +93,45 @@ services:
     depends_on:
       airflow-init:
         condition: service_completed_successfully
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: lss_redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  fastapi:
+    build:
+      context: .
+      dockerfile: FastAPI.Dockerfile
+    container_name: lss_fastapi
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+    # No longer need pip install at runtime
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
 
 volumes:
   pgdata:

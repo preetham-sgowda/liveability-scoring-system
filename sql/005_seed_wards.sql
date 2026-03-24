@@ -12,6 +12,7 @@
 CREATE OR REPLACE FUNCTION raw.upsert_ward_boundary(
     p_ward_name     VARCHAR,
     p_ward_number   INTEGER,
+    p_city          VARCHAR,
     p_zone_name     VARCHAR,
     p_area_sqkm     NUMERIC,
     p_geojson       TEXT
@@ -19,10 +20,11 @@ CREATE OR REPLACE FUNCTION raw.upsert_ward_boundary(
 DECLARE
     v_ward_id INTEGER;
 BEGIN
-    INSERT INTO raw.ward_boundaries (ward_name, ward_number, zone_name, area_sqkm, geom)
+    INSERT INTO raw.ward_boundaries (ward_name, ward_number, city, zone_name, area_sqkm, geom)
     VALUES (
         p_ward_name,
         p_ward_number,
+        p_city,
         p_zone_name,
         p_area_sqkm,
         ST_SetSRID(ST_GeomFromGeoJSON(p_geojson), 4326)

@@ -1,5 +1,5 @@
 # ── Orchestration ──
-apache-airflow==2.8.1
+# apache-airflow==2.8.1 (Not needed for API)
 
 # ── Data Parsing & Scraping ──
 pdfplumber==0.10.3
@@ -25,6 +25,14 @@ numpy==1.26.3
 
 # ── HTTP & API ──
 requests==2.31.0
+fastapi==0.109.0
+uvicorn==0.27.0
+redis==5.0.1
+websockets==12.0
+
+# ── ML & Processing ──
+scikit-learn==1.4.0
+scipy==1.12.0
 
 # ── Configuration ──
 python-dotenv==1.0.0

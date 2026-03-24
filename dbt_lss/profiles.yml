@@ -1,0 +1,12 @@
+lss:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('POSTGRES_HOST', 'localhost') }}"
+      port: "{{ env_var('POSTGRES_PORT', '5432') | int }}"
+      user: "{{ env_var('POSTGRES_USER', 'lss_user') }}"
+      password: "{{ env_var('POSTGRES_PASSWORD', 'lss_password') }}"
+      dbname: "{{ env_var('POSTGRES_DB', 'lss_warehouse') }}"
+      schema: public
+      threads: 4

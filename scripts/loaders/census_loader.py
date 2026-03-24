@@ -184,7 +184,7 @@ def get_prepare_rows(df: pd.DataFrame) -> tuple[list[str], list[tuple]]:
         Tuple of (column_names, row_tuples)
     """
     columns = [
-        "ward_name", "ward_number", "population", "male_population",
+        "ward_name", "ward_number", "city", "population", "male_population",
         "female_population", "area_sqkm", "density", "literacy_rate",
         "male_literacy", "female_literacy", "household_size",
         "total_households", "year"

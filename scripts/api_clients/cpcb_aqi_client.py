@@ -32,6 +32,24 @@ BENGALURU_STATIONS = [
     {"id": "site_5036", "name": "City Railway Station", "lat": 12.9784, "lon": 77.5710},
 ]
 
+MUMBAI_STATIONS = [
+    {"id": "site_5101", "name": "Colaba", "lat": 18.9067, "lon": 72.8147},
+    {"id": "site_5102", "name": "Bandra Kurla Complex", "lat": 19.0626, "lon": 72.8633},
+    {"id": "site_5103", "name": "Vile Parle West", "lat": 19.1025, "lon": 72.8391},
+]
+
+DELHI_STATIONS = [
+    {"id": "site_5001", "name": "Anand Vihar", "lat": 28.6476, "lon": 77.3158},
+    {"id": "site_5002", "name": "R.K. Puram", "lat": 28.5668, "lon": 77.1706},
+    {"id": "site_5003", "name": "Ito", "lat": 28.6286, "lon": 77.2410},
+]
+
+STATION_MAP = {
+    "Bengaluru": BENGALURU_STATIONS,
+    "Mumbai": MUMBAI_STATIONS,
+    "Delhi": DELHI_STATIONS
+}
+
 MAX_RETRIES = 3
 BACKOFF_FACTOR = 2
 REQUEST_TIMEOUT = 30
@@ -43,9 +61,9 @@ class CpcbAqiClient:
     def __init__(self, api_key: Optional[str] = None,
                  base_url: Optional[str] = None):
         self.api_key = api_key or os.getenv("CPCB_API_KEY", "")
-        self.base_url = base_url or os.getenv(
-            "CPCB_API_BASE_URL", DEFAULT_BASE_URL
-        )
+        # Force the correct base URL
+        self.base_url = "https://app.cpcbccr.com/ccr_docs/ccr_doc/api"
+        print(f"🔗 CpcbAqiClient initialized with base_url: {self.base_url}")
         self.session = requests.Session()
         self.session.headers.update({
             "Accept": "application/json",
@@ -100,6 +118,27 @@ class CpcbAqiClient:
             f"after {MAX_RETRIES} attempts"
         )
         return None
+
+    def fetch_latest_readings(self, city: str) -> list[dict]:
+        """Fetch latest AQI data for all stations in a city."""
+        stations = STATION_MAP.get(city, [])
+        logger.info(f"Fetching latest AQI for {len(stations)} stations in {city}")
+        
+        target_date = datetime.now().date()
+        readings = []
+        for station in stations:
+            reading = self.fetch_station_data(
+                station_id=station["id"],
+                station_name=station["name"],
+                target_date=target_date,
+                lat=station["lat"],
+                lon=station["lon"],
+            )
+            if reading:
+                reading["city"] = city
+                readings.append(reading)
+            time.sleep(0.5)
+        return readings
 
     def fetch_daily_readings(self, target_date: date) -> list[dict]:
         """

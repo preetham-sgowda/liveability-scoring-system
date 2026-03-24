@@ -1,0 +1,67 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    description: "Raw ingested data from all 7 sources"
+    tables:
+      - name: ncrb_crime
+        description: "NCRB Crime in India IPC offense data"
+        columns:
+          - name: id
+            tests: [unique, not_null]
+          - name: city
+            tests: [not_null]
+          - name: year
+            tests: [not_null]
+
+      - name: bbmp_complaints
+        description: "BBMP Sahaaya civic complaints"
+        columns:
+          - name: complaint_id
+            tests: [unique, not_null]
+
+      - name: cpcb_aqi
+        description: "CPCB daily AQI readings per station"
+        columns:
+          - name: id
+            tests: [unique, not_null]
+          - name: date
+            tests: [not_null]
+
+      - name: census
+        description: "Census of India ward-level demographics"
+        columns:
+          - name: id
+            tests: [unique, not_null]
+
+      - name: gtfs_stops
+        description: "GTFS transit stops (bus + metro)"
+        columns:
+          - name: id
+            tests: [unique, not_null]
+
+      - name: ndvi
+        description: "Monthly NDVI from Sentinel-2 via GEE"
+        columns:
+          - name: id
+            tests: [unique, not_null]
+          - name: ward_id
+            tests: [not_null]
+
+      - name: property_prices
+        description: "MagicBricks/99acres property listings (validation label)"
+        columns:
+          - name: id
+            tests: [unique, not_null]
+
+      - name: ward_boundaries
+        description: "BBMP 198 ward polygons"
+        columns:
+          - name: ward_id
+            tests: [unique, not_null]
+          - name: ward_name
+            tests: [not_null]
+
+      - name: pipeline_runs
+        description: "Audit log for all pipeline executions"

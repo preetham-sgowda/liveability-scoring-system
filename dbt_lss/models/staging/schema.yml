@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: stg_crime
+    description: "Crime data aggregated by ward + year from NCRB"
+    columns:
+      - name: ward_id
+        tests: [not_null]
+      - name: year
+        tests:
+          - not_null
+          - accepted_values:
+              values: [2018, 2019, 2020, 2021, 2022, 2023, 2024]
+      - name: total_ipc_offenses
+        tests:
+          - not_null
+
+  - name: stg_complaints
+    description: "BBMP civic complaints aggregated by ward + year"
+    columns:
+      - name: ward_id
+        tests: [not_null]
+      - name: year
+        tests: [not_null]
+      - name: resolution_rate
+        description: "Fraction of complaints resolved (0 to 1)"
+
+  - name: stg_aqi
+    description: "Air quality metrics per ward per year from CPCB"
+    columns:
+      - name: ward_id
+        tests: [not_null]
+      - name: year
+        tests: [not_null]
+
+  - name: stg_census
+    description: "Census demographics per ward"
+    columns:
+      - name: ward_id
+        tests: [not_null]
+      - name: population
+        tests: [not_null]
+      - name: literacy_rate
+        description: "Percentage (0-100)"
+
+  - name: stg_transit
+    description: "Transit accessibility per ward per year"
+    columns:
+      - name: ward_id
+        tests: [not_null]
+      - name: year
+        tests: [not_null]
+
+  - name: stg_ndvi
+    description: "Annual NDVI vegetation index per ward"
+    columns:
+      - name: ward_id
+        tests: [not_null]
+      - name: year
+        tests: [not_null]
+      - name: avg_ndvi
+        description: "Mean NDVI value (-1 to 1, typical 0.1-0.8)"
+
+  - name: stg_property_prices
+    description: "Property price aggregation per ward per year (validation label)"
+    columns:
+      - name: ward_id
+        tests: [not_null]
+      - name: year
+        tests: [not_null]
