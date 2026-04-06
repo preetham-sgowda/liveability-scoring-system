@@ -46,7 +46,7 @@ A data-driven platform that analyzes crime, environment, infrastructure, and tra
 | Web Scraping | Scrapy 2.11 |
 | Geospatial | GeoFandas, rasterio, rasterstats, H3 |
 | Remote Sensing | Google Earth Engine API |
-| Infrastructure | Docker Compose |
+| Infrastructure | PostgreSQL + PostGIS (managed separately) |
 
 ## Quick Start
 
@@ -57,10 +57,10 @@ cd liveability-scoring-system
 cp .env.example .env  # Edit with your credentials
 
 # 2. Start infrastructure
-docker compose up -d
+Start PostgreSQL 15 + PostGIS and Airflow using your preferred method (native install, cloud service, or system service). Ensure your database is reachable and configure `.env` accordingly.
 
-# 3. Access Airflow UI
-open http://localhost:8080  # admin / admin
+# 3. (Optional) Access Airflow UI
+Open the Airflow UI on your Airflow host/port (e.g., http://<airflow-host>:8080) and sign in with your Airflow credentials.
 
 # 4. Run dbt transformations
 cd dbt_lss
