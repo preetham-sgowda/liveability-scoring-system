@@ -63,6 +63,110 @@ async def get_ward_history(ward_id: int):
         import pandas as pd
         query = "SELECT * FROM marts.liveability_scores WHERE ward_id = %s ORDER BY year, month"
         df = pd.read_sql(query, conn, params=(ward_id,))
+@app.get("/wards/{ward_id}/scores")
+async def get_ward_scores(ward_id: int):
+    """All year scores for a ward."""
+    with get_db_connection() as conn:
+        import pandas as pd
+        query = "SELECT * FROM marts.liveability_scores WHERE ward_id = %s ORDER BY year"
+        df = pd.read_sql(query, conn, params=(ward_id,))
+        return df.to_dict(orient="records")
+
+@app.get("/wards/{ward_id}/decline")
+async def get_ward_decline(ward_id: int):
+    """Decline prediction + SHAP drivers."""
+    with get_db_connection() as conn:
+        import pandas as pd
+        # Latest prediction
+        q_pred = "SELECT * FROM marts.ward_decline_predictions WHERE ward_id = %s ORDER BY year DESC LIMIT 1"
+        df_pred = pd.read_sql(q_pred, conn, params=(ward_id,))
+        
+        # Latest drivers
+        q_drivers = "SELECT * FROM marts.ward_shap_drivers WHERE ward_id = %s ORDER BY year DESC LIMIT 1"
+        df_drivers = pd.read_sql(q_drivers, conn, params=(ward_id,))
+        
+        return {
+            "prediction": df_pred.to_dict(orient="records")[0] if not df_pred.empty else None,
+            "drivers": df_drivers.to_dict(orient="records")[0] if not df_drivers.empty else None
+        }
+
+@app.get("/clusters/{city}")
+async def get_clusters(city: str):
+    """All ward cluster assignments."""
+    with get_db_connection() as conn:
+        import pandas as pd
+        query = """
+            SELECT w.ward_id, w.ward_name, c.cluster_id, c.cluster_label, c.year
+            FROM marts.ward_clusters c
+            JOIN raw.ward_boundaries w ON c.ward_id = w.ward_id
+            WHERE w.city = %s
+        """
+        df = pd.read_sql(query, conn, params=(city.title(),))
+        return df.to_dict(orient="records")
+
+@app.get("/compare")
+async def compare_wards(ward_a: int, ward_b: int):
+    """Side-by-side comparison data."""
+    with get_db_connection() as conn:
+        import pandas as pd
+        query = """
+            SELECT * FROM marts.liveability_scores 
+            WHERE ward_id IN (%s, %s)
+            ORDER BY year DESC
+        """
+        df = pd.read_sql(query, conn, params=(ward_a, ward_b))
+        
+        # Group by ward_id and get latest
+        latest = df.drop_duplicates(subset=['ward_id'], keep='first')
+        return latest.to_dict(orient="records")
+
+@app.get("/alerts/{city}")
+async def get_alerts(city: str, threshold: float = 0.6):
+    """At-risk wards above threshold."""
+    with get_db_connection() as conn:
+        import pandas as pd
+        query = """
+            SELECT p.ward_id, w.ward_name, p.decline_probability, p.year,
+                   d.driver_1_feature, d.driver_2_feature
+            FROM marts.ward_decline_predictions p
+            JOIN raw.ward_boundaries w ON p.ward_id = w.ward_id
+            LEFT JOIN marts.ward_shap_drivers d ON p.ward_id = d.ward_id AND p.year = d.year
+            WHERE w.city = %s AND p.decline_probability >= %s
+            ORDER BY p.decline_probability DESC
+        """
+        df = pd.read_sql(query, conn, params=(city.title(), threshold))
+        return df.to_dict(orient="records")
+
+@app.get("/opportunity/{city}")
+async def get_opportunity(city: str):
+    """High score, low price wards."""
+    with get_db_connection() as conn:
+        import pandas as pd
+        query = """
+            WITH latest_scores AS (
+                SELECT ward_id, composite_score FROM marts.liveability_scores
+                WHERE city = %s
+                ORDER BY year DESC
+            ),
+            latest_features AS (
+                SELECT ward_id, ward_name, median_price_sqft 
+                FROM marts.mart_ward_features
+                WHERE city = %s
+                ORDER BY year DESC
+            )
+            SELECT f.ward_id, f.ward_name, s.composite_score, f.median_price_sqft
+            FROM latest_features f
+            JOIN latest_scores s ON f.ward_id = s.ward_id
+            WHERE s.composite_score > 65 AND f.median_price_sqft > 0
+        """
+        df = pd.read_sql(query, conn, params=(city.title(), city.title()))
+        
+        if not df.empty:
+            city_median = df['median_price_sqft'].median()
+            df = df[df['median_price_sqft'] < city_median]
+            df['delta_from_median'] = city_median - df['median_price_sqft']
+            df = df.sort_values('delta_from_median', ascending=False)
+            
         return df.to_dict(orient="records")
 
 # WebSocket for Real-time AQI
