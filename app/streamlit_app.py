@@ -26,6 +26,7 @@ GEOJSON_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__fi
 # Helper to load data
 @st.cache_data
 def load_data(table_name):
+    """Load data from database or fallback CSV."""
     # Try DB first
     try:
         from scripts.db_utils import get_db_connection
@@ -67,7 +68,8 @@ pages = [
     "7. City Overview",
     "8. Ward Typology",
     "9. Data Explorer",
-    "10. Tech Showcase"
+    "10. Tech Showcase",
+    "11. Ward Directory"
 ]
 
 page = st.sidebar.radio("Navigation", pages)
@@ -94,6 +96,9 @@ if page == "1. Landing Map":
     with col1:
         # Simple folium map
         if os.path.exists(GEOJSON_PATH):
+            with open(GEOJSON_PATH, "r", encoding="utf-8") as f:
+                geojson_data = json.load(f)
+                
             m = folium.Map(location=[12.9716, 77.5946], zoom_start=11, tiles="CartoDB positron")
             
             # Map score to color
@@ -103,11 +108,11 @@ if page == "1. Landing Map":
                 else: return "#e74c3c" # Red
                 
             folium.Choropleth(
-                geo_data=GEOJSON_PATH,
+                geo_data=geojson_data,
                 name="Liveability Score",
                 data=df_scores_latest,
                 columns=["ward_name", "composite_score"],
-                key_on="feature.properties.ward_name",
+                key_on="feature.properties.name_en",
                 fill_color="YlGnBu",
                 fill_opacity=0.7,
                 line_opacity=0.2,
@@ -304,3 +309,21 @@ elif page == "10. Tech Showcase":
     * **Streamlit** + **Plotly** + **Folium**
     * **FastAPI** backend
     """)
+
+# ---- 11. Ward Directory ----
+elif page == "11. Ward Directory":
+    st.title("Ward Directory")
+    st.markdown("Easily look up the ward name corresponding to each ward ID.")
+    
+    # Get unique ward mapping
+    ward_mapping = df_scores[['ward_id', 'ward_name']].drop_duplicates().sort_values('ward_id').reset_index(drop=True)
+    
+    # Add a search bar to easily filter the dataframe
+    search_query = st.text_input("Search by Ward ID or Name", "")
+    if search_query:
+        ward_mapping = ward_mapping[
+            ward_mapping['ward_name'].str.contains(search_query, case=False, na=False) |
+            ward_mapping['ward_id'].astype(str).str.contains(search_query, case=False, na=False)
+        ]
+        
+    st.dataframe(ward_mapping, use_container_width=True, hide_index=True)

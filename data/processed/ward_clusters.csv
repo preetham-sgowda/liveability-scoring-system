@@ -1,0 +1,901 @@
+ward_id,cluster_id,cluster_label,year
+3,3,Developing,2021
+17,0,Urban Core,2021
+15,3,Developing,2021
+16,2,Distressed,2021
+18,1,Green Suburbs,2021
+19,1,Green Suburbs,2021
+37,1,Green Suburbs,2021
+20,0,Urban Core,2021
+21,2,Distressed,2021
+67,4,Commercial Hub,2021
+22,1,Green Suburbs,2021
+23,2,Distressed,2021
+63,3,Developing,2021
+24,0,Urban Core,2021
+25,2,Distressed,2021
+26,2,Distressed,2021
+30,4,Commercial Hub,2021
+27,2,Distressed,2021
+28,4,Commercial Hub,2021
+29,0,Urban Core,2021
+35,0,Urban Core,2021
+31,3,Developing,2021
+36,4,Commercial Hub,2021
+52,4,Commercial Hub,2021
+32,1,Green Suburbs,2021
+33,1,Green Suburbs,2021
+34,3,Developing,2021
+41,0,Urban Core,2021
+53,1,Green Suburbs,2021
+70,2,Distressed,2021
+42,0,Urban Core,2021
+54,2,Distressed,2021
+55,4,Commercial Hub,2021
+43,0,Urban Core,2021
+44,3,Developing,2021
+45,4,Commercial Hub,2021
+51,4,Commercial Hub,2021
+71,2,Distressed,2021
+56,4,Commercial Hub,2021
+57,1,Green Suburbs,2021
+60,0,Urban Core,2021
+61,1,Green Suburbs,2021
+66,2,Distressed,2021
+68,2,Distressed,2021
+69,0,Urban Core,2021
+74,4,Commercial Hub,2021
+75,3,Developing,2021
+86,2,Distressed,2021
+89,0,Urban Core,2021
+80,3,Developing,2021
+93,4,Commercial Hub,2021
+87,2,Distressed,2021
+81,0,Urban Core,2021
+94,0,Urban Core,2021
+82,0,Urban Core,2021
+76,2,Distressed,2021
+96,3,Developing,2021
+78,0,Urban Core,2021
+77,4,Commercial Hub,2021
+79,0,Urban Core,2021
+83,3,Developing,2021
+84,2,Distressed,2021
+85,0,Urban Core,2021
+125,0,Urban Core,2021
+101,4,Commercial Hub,2021
+128,4,Commercial Hub,2021
+108,0,Urban Core,2021
+113,0,Urban Core,2021
+114,4,Commercial Hub,2021
+139,3,Developing,2021
+115,1,Green Suburbs,2021
+116,1,Green Suburbs,2021
+117,0,Urban Core,2021
+120,4,Commercial Hub,2021
+121,2,Distressed,2021
+122,2,Distressed,2021
+123,1,Green Suburbs,2021
+124,3,Developing,2021
+126,1,Green Suburbs,2021
+127,0,Urban Core,2021
+141,3,Developing,2021
+144,2,Distressed,2021
+154,4,Commercial Hub,2021
+148,4,Commercial Hub,2021
+149,0,Urban Core,2021
+155,1,Green Suburbs,2021
+150,0,Urban Core,2021
+151,4,Commercial Hub,2021
+152,2,Distressed,2021
+156,4,Commercial Hub,2021
+157,3,Developing,2021
+158,4,Commercial Hub,2021
+159,4,Commercial Hub,2021
+225,3,Developing,2021
+160,1,Green Suburbs,2021
+161,4,Commercial Hub,2021
+162,0,Urban Core,2021
+177,4,Commercial Hub,2021
+163,0,Urban Core,2021
+167,3,Developing,2021
+164,4,Commercial Hub,2021
+165,3,Developing,2021
+166,3,Developing,2021
+168,1,Green Suburbs,2021
+169,4,Commercial Hub,2021
+170,0,Urban Core,2021
+171,0,Urban Core,2021
+175,4,Commercial Hub,2021
+195,1,Green Suburbs,2021
+203,1,Green Suburbs,2021
+204,1,Green Suburbs,2021
+206,0,Urban Core,2021
+207,3,Developing,2021
+224,1,Green Suburbs,2021
+208,0,Urban Core,2021
+209,0,Urban Core,2021
+212,3,Developing,2021
+220,4,Commercial Hub,2021
+222,4,Commercial Hub,2021
+7,1,Green Suburbs,2021
+62,1,Green Suburbs,2021
+11,3,Developing,2021
+9,1,Green Suburbs,2021
+100,3,Developing,2021
+90,0,Urban Core,2021
+136,1,Green Suburbs,2021
+88,0,Urban Core,2021
+145,2,Distressed,2021
+118,3,Developing,2021
+119,2,Distressed,2021
+59,1,Green Suburbs,2021
+58,0,Urban Core,2021
+172,1,Green Suburbs,2021
+129,2,Distressed,2021
+5,1,Green Suburbs,2021
+202,4,Commercial Hub,2021
+147,2,Distressed,2021
+153,1,Green Suburbs,2021
+146,0,Urban Core,2021
+187,1,Green Suburbs,2021
+184,0,Urban Core,2021
+176,4,Commercial Hub,2021
+174,1,Green Suburbs,2021
+173,4,Commercial Hub,2021
+213,2,Distressed,2021
+214,0,Urban Core,2021
+215,2,Distressed,2021
+216,0,Urban Core,2021
+217,4,Commercial Hub,2021
+219,3,Developing,2021
+218,1,Green Suburbs,2021
+2,4,Commercial Hub,2021
+4,0,Urban Core,2021
+1,0,Urban Core,2021
+65,0,Urban Core,2021
+10,0,Urban Core,2021
+14,1,Green Suburbs,2021
+13,2,Distressed,2021
+12,3,Developing,2021
+8,1,Green Suburbs,2021
+64,0,Urban Core,2021
+46,1,Green Suburbs,2021
+6,4,Commercial Hub,2021
+91,0,Urban Core,2021
+92,3,Developing,2021
+99,0,Urban Core,2021
+97,3,Developing,2021
+72,3,Developing,2021
+73,2,Distressed,2021
+38,2,Distressed,2021
+40,1,Green Suburbs,2021
+39,1,Green Suburbs,2021
+47,3,Developing,2021
+49,0,Urban Core,2021
+48,4,Commercial Hub,2021
+50,4,Commercial Hub,2021
+109,0,Urban Core,2021
+110,0,Urban Core,2021
+194,2,Distressed,2021
+221,4,Commercial Hub,2021
+223,3,Developing,2021
+211,1,Green Suburbs,2021
+178,2,Distressed,2021
+210,4,Commercial Hub,2021
+181,0,Urban Core,2021
+180,4,Commercial Hub,2021
+179,3,Developing,2021
+185,2,Distressed,2021
+135,0,Urban Core,2021
+137,3,Developing,2021
+196,1,Green Suburbs,2021
+140,2,Distressed,2021
+142,3,Developing,2021
+143,3,Developing,2021
+134,0,Urban Core,2021
+198,1,Green Suburbs,2021
+199,3,Developing,2021
+200,2,Distressed,2021
+201,3,Developing,2021
+197,4,Commercial Hub,2021
+186,2,Distressed,2021
+183,2,Distressed,2021
+182,3,Developing,2021
+131,0,Urban Core,2021
+132,2,Distressed,2021
+130,4,Commercial Hub,2021
+133,0,Urban Core,2021
+190,0,Urban Core,2021
+205,0,Urban Core,2021
+98,2,Distressed,2021
+95,0,Urban Core,2021
+103,3,Developing,2021
+111,0,Urban Core,2021
+102,4,Commercial Hub,2021
+112,1,Green Suburbs,2021
+107,4,Commercial Hub,2021
+104,2,Distressed,2021
+138,0,Urban Core,2021
+106,0,Urban Core,2021
+188,3,Developing,2021
+105,0,Urban Core,2021
+189,4,Commercial Hub,2021
+191,2,Distressed,2021
+192,1,Green Suburbs,2021
+193,0,Urban Core,2021
+3,1,Green Suburbs,2022
+17,0,Urban Core,2022
+15,2,Distressed,2022
+16,4,Commercial Hub,2022
+18,2,Distressed,2022
+19,1,Green Suburbs,2022
+37,0,Urban Core,2022
+20,1,Green Suburbs,2022
+21,4,Commercial Hub,2022
+67,2,Distressed,2022
+22,1,Green Suburbs,2022
+23,1,Green Suburbs,2022
+63,4,Commercial Hub,2022
+24,0,Urban Core,2022
+25,1,Green Suburbs,2022
+26,4,Commercial Hub,2022
+30,0,Urban Core,2022
+27,0,Urban Core,2022
+28,2,Distressed,2022
+29,4,Commercial Hub,2022
+35,0,Urban Core,2022
+31,2,Distressed,2022
+36,3,Developing,2022
+52,4,Commercial Hub,2022
+32,3,Developing,2022
+33,0,Urban Core,2022
+34,4,Commercial Hub,2022
+41,2,Distressed,2022
+53,0,Urban Core,2022
+70,4,Commercial Hub,2022
+42,4,Commercial Hub,2022
+54,3,Developing,2022
+55,0,Urban Core,2022
+43,2,Distressed,2022
+44,2,Distressed,2022
+45,0,Urban Core,2022
+51,0,Urban Core,2022
+71,1,Green Suburbs,2022
+56,3,Developing,2022
+57,0,Urban Core,2022
+60,0,Urban Core,2022
+61,1,Green Suburbs,2022
+66,1,Green Suburbs,2022
+68,4,Commercial Hub,2022
+69,2,Distressed,2022
+74,3,Developing,2022
+75,4,Commercial Hub,2022
+86,0,Urban Core,2022
+89,1,Green Suburbs,2022
+80,2,Distressed,2022
+93,4,Commercial Hub,2022
+87,2,Distressed,2022
+81,1,Green Suburbs,2022
+94,4,Commercial Hub,2022
+82,4,Commercial Hub,2022
+76,2,Distressed,2022
+96,1,Green Suburbs,2022
+78,0,Urban Core,2022
+77,4,Commercial Hub,2022
+79,0,Urban Core,2022
+83,1,Green Suburbs,2022
+84,4,Commercial Hub,2022
+85,4,Commercial Hub,2022
+125,0,Urban Core,2022
+101,3,Developing,2022
+128,0,Urban Core,2022
+108,0,Urban Core,2022
+113,3,Developing,2022
+114,1,Green Suburbs,2022
+139,1,Green Suburbs,2022
+115,4,Commercial Hub,2022
+116,2,Distressed,2022
+117,2,Distressed,2022
+120,4,Commercial Hub,2022
+121,2,Distressed,2022
+122,0,Urban Core,2022
+123,0,Urban Core,2022
+124,3,Developing,2022
+126,3,Developing,2022
+127,4,Commercial Hub,2022
+141,4,Commercial Hub,2022
+144,4,Commercial Hub,2022
+154,0,Urban Core,2022
+148,2,Distressed,2022
+149,4,Commercial Hub,2022
+155,4,Commercial Hub,2022
+150,0,Urban Core,2022
+151,0,Urban Core,2022
+152,0,Urban Core,2022
+156,2,Distressed,2022
+157,4,Commercial Hub,2022
+158,1,Green Suburbs,2022
+159,1,Green Suburbs,2022
+225,4,Commercial Hub,2022
+160,4,Commercial Hub,2022
+161,4,Commercial Hub,2022
+162,4,Commercial Hub,2022
+177,2,Distressed,2022
+163,1,Green Suburbs,2022
+167,3,Developing,2022
+164,1,Green Suburbs,2022
+165,1,Green Suburbs,2022
+166,0,Urban Core,2022
+168,4,Commercial Hub,2022
+169,4,Commercial Hub,2022
+170,4,Commercial Hub,2022
+171,0,Urban Core,2022
+175,2,Distressed,2022
+195,2,Distressed,2022
+203,3,Developing,2022
+204,2,Distressed,2022
+206,2,Distressed,2022
+207,4,Commercial Hub,2022
+224,1,Green Suburbs,2022
+208,2,Distressed,2022
+209,2,Distressed,2022
+212,0,Urban Core,2022
+220,3,Developing,2022
+222,0,Urban Core,2022
+7,4,Commercial Hub,2022
+62,1,Green Suburbs,2022
+11,3,Developing,2022
+9,0,Urban Core,2022
+100,2,Distressed,2022
+90,2,Distressed,2022
+136,3,Developing,2022
+88,2,Distressed,2022
+145,0,Urban Core,2022
+118,0,Urban Core,2022
+119,2,Distressed,2022
+59,2,Distressed,2022
+58,4,Commercial Hub,2022
+172,1,Green Suburbs,2022
+129,3,Developing,2022
+5,0,Urban Core,2022
+202,3,Developing,2022
+147,4,Commercial Hub,2022
+153,0,Urban Core,2022
+146,4,Commercial Hub,2022
+187,4,Commercial Hub,2022
+184,2,Distressed,2022
+176,3,Developing,2022
+174,3,Developing,2022
+173,2,Distressed,2022
+213,3,Developing,2022
+214,2,Distressed,2022
+215,0,Urban Core,2022
+216,4,Commercial Hub,2022
+217,4,Commercial Hub,2022
+219,3,Developing,2022
+218,1,Green Suburbs,2022
+2,4,Commercial Hub,2022
+4,2,Distressed,2022
+1,1,Green Suburbs,2022
+65,1,Green Suburbs,2022
+10,4,Commercial Hub,2022
+14,4,Commercial Hub,2022
+13,4,Commercial Hub,2022
+12,2,Distressed,2022
+8,1,Green Suburbs,2022
+64,3,Developing,2022
+46,2,Distressed,2022
+6,0,Urban Core,2022
+91,4,Commercial Hub,2022
+92,1,Green Suburbs,2022
+99,2,Distressed,2022
+97,0,Urban Core,2022
+72,2,Distressed,2022
+73,2,Distressed,2022
+38,3,Developing,2022
+40,3,Developing,2022
+39,2,Distressed,2022
+47,0,Urban Core,2022
+49,1,Green Suburbs,2022
+48,1,Green Suburbs,2022
+50,4,Commercial Hub,2022
+109,4,Commercial Hub,2022
+110,1,Green Suburbs,2022
+194,2,Distressed,2022
+221,2,Distressed,2022
+223,3,Developing,2022
+211,3,Developing,2022
+178,4,Commercial Hub,2022
+210,1,Green Suburbs,2022
+181,2,Distressed,2022
+180,1,Green Suburbs,2022
+179,0,Urban Core,2022
+185,1,Green Suburbs,2022
+135,0,Urban Core,2022
+137,3,Developing,2022
+196,3,Developing,2022
+140,4,Commercial Hub,2022
+142,1,Green Suburbs,2022
+143,1,Green Suburbs,2022
+134,0,Urban Core,2022
+198,3,Developing,2022
+199,0,Urban Core,2022
+200,3,Developing,2022
+201,0,Urban Core,2022
+197,3,Developing,2022
+186,0,Urban Core,2022
+183,3,Developing,2022
+182,0,Urban Core,2022
+131,1,Green Suburbs,2022
+132,4,Commercial Hub,2022
+130,0,Urban Core,2022
+133,4,Commercial Hub,2022
+190,1,Green Suburbs,2022
+205,1,Green Suburbs,2022
+98,3,Developing,2022
+95,4,Commercial Hub,2022
+103,2,Distressed,2022
+111,3,Developing,2022
+102,4,Commercial Hub,2022
+112,0,Urban Core,2022
+107,0,Urban Core,2022
+104,1,Green Suburbs,2022
+138,2,Distressed,2022
+106,0,Urban Core,2022
+188,4,Commercial Hub,2022
+105,4,Commercial Hub,2022
+189,0,Urban Core,2022
+191,4,Commercial Hub,2022
+192,4,Commercial Hub,2022
+193,1,Green Suburbs,2022
+3,2,Distressed,2023
+17,1,Green Suburbs,2023
+15,2,Distressed,2023
+16,4,Commercial Hub,2023
+18,2,Distressed,2023
+19,4,Commercial Hub,2023
+37,4,Commercial Hub,2023
+20,1,Green Suburbs,2023
+21,1,Green Suburbs,2023
+67,3,Developing,2023
+22,0,Urban Core,2023
+23,3,Developing,2023
+63,3,Developing,2023
+24,2,Distressed,2023
+25,4,Commercial Hub,2023
+26,4,Commercial Hub,2023
+30,4,Commercial Hub,2023
+27,0,Urban Core,2023
+28,2,Distressed,2023
+29,2,Distressed,2023
+35,4,Commercial Hub,2023
+31,3,Developing,2023
+36,0,Urban Core,2023
+52,3,Developing,2023
+32,1,Green Suburbs,2023
+33,2,Distressed,2023
+34,2,Distressed,2023
+41,3,Developing,2023
+53,0,Urban Core,2023
+70,2,Distressed,2023
+42,3,Developing,2023
+54,0,Urban Core,2023
+55,3,Developing,2023
+43,0,Urban Core,2023
+44,4,Commercial Hub,2023
+45,0,Urban Core,2023
+51,1,Green Suburbs,2023
+71,4,Commercial Hub,2023
+56,3,Developing,2023
+57,4,Commercial Hub,2023
+60,4,Commercial Hub,2023
+61,3,Developing,2023
+66,3,Developing,2023
+68,1,Green Suburbs,2023
+69,3,Developing,2023
+74,2,Distressed,2023
+75,2,Distressed,2023
+86,1,Green Suburbs,2023
+89,0,Urban Core,2023
+80,0,Urban Core,2023
+93,2,Distressed,2023
+87,3,Developing,2023
+81,1,Green Suburbs,2023
+94,0,Urban Core,2023
+82,0,Urban Core,2023
+76,4,Commercial Hub,2023
+96,2,Distressed,2023
+78,3,Developing,2023
+77,1,Green Suburbs,2023
+79,0,Urban Core,2023
+83,4,Commercial Hub,2023
+84,2,Distressed,2023
+85,2,Distressed,2023
+125,1,Green Suburbs,2023
+101,0,Urban Core,2023
+128,1,Green Suburbs,2023
+108,1,Green Suburbs,2023
+113,4,Commercial Hub,2023
+114,2,Distressed,2023
+139,3,Developing,2023
+115,2,Distressed,2023
+116,2,Distressed,2023
+117,4,Commercial Hub,2023
+120,3,Developing,2023
+121,0,Urban Core,2023
+122,3,Developing,2023
+123,0,Urban Core,2023
+124,3,Developing,2023
+126,1,Green Suburbs,2023
+127,3,Developing,2023
+141,4,Commercial Hub,2023
+144,0,Urban Core,2023
+154,2,Distressed,2023
+148,4,Commercial Hub,2023
+149,0,Urban Core,2023
+155,0,Urban Core,2023
+150,2,Distressed,2023
+151,1,Green Suburbs,2023
+152,4,Commercial Hub,2023
+156,2,Distressed,2023
+157,2,Distressed,2023
+158,1,Green Suburbs,2023
+159,4,Commercial Hub,2023
+225,2,Distressed,2023
+160,1,Green Suburbs,2023
+161,4,Commercial Hub,2023
+162,3,Developing,2023
+177,0,Urban Core,2023
+163,1,Green Suburbs,2023
+167,0,Urban Core,2023
+164,3,Developing,2023
+165,2,Distressed,2023
+166,2,Distressed,2023
+168,4,Commercial Hub,2023
+169,1,Green Suburbs,2023
+170,1,Green Suburbs,2023
+171,4,Commercial Hub,2023
+175,0,Urban Core,2023
+195,2,Distressed,2023
+203,2,Distressed,2023
+204,1,Green Suburbs,2023
+206,1,Green Suburbs,2023
+207,4,Commercial Hub,2023
+224,3,Developing,2023
+208,0,Urban Core,2023
+209,3,Developing,2023
+212,3,Developing,2023
+220,1,Green Suburbs,2023
+222,1,Green Suburbs,2023
+7,1,Green Suburbs,2023
+62,3,Developing,2023
+11,0,Urban Core,2023
+9,1,Green Suburbs,2023
+100,2,Distressed,2023
+90,0,Urban Core,2023
+136,2,Distressed,2023
+88,0,Urban Core,2023
+145,1,Green Suburbs,2023
+118,4,Commercial Hub,2023
+119,1,Green Suburbs,2023
+59,3,Developing,2023
+58,3,Developing,2023
+172,0,Urban Core,2023
+129,3,Developing,2023
+5,1,Green Suburbs,2023
+202,2,Distressed,2023
+147,1,Green Suburbs,2023
+153,0,Urban Core,2023
+146,3,Developing,2023
+187,2,Distressed,2023
+184,4,Commercial Hub,2023
+176,2,Distressed,2023
+174,2,Distressed,2023
+173,1,Green Suburbs,2023
+213,4,Commercial Hub,2023
+214,0,Urban Core,2023
+215,0,Urban Core,2023
+216,2,Distressed,2023
+217,2,Distressed,2023
+219,3,Developing,2023
+218,4,Commercial Hub,2023
+2,2,Distressed,2023
+4,3,Developing,2023
+1,4,Commercial Hub,2023
+65,0,Urban Core,2023
+10,3,Developing,2023
+14,4,Commercial Hub,2023
+13,3,Developing,2023
+12,2,Distressed,2023
+8,1,Green Suburbs,2023
+64,0,Urban Core,2023
+46,2,Distressed,2023
+6,2,Distressed,2023
+91,4,Commercial Hub,2023
+92,3,Developing,2023
+99,0,Urban Core,2023
+97,2,Distressed,2023
+72,4,Commercial Hub,2023
+73,0,Urban Core,2023
+38,3,Developing,2023
+40,2,Distressed,2023
+39,2,Distressed,2023
+47,2,Distressed,2023
+49,0,Urban Core,2023
+48,0,Urban Core,2023
+50,0,Urban Core,2023
+109,0,Urban Core,2023
+110,4,Commercial Hub,2023
+194,1,Green Suburbs,2023
+221,4,Commercial Hub,2023
+223,2,Distressed,2023
+211,4,Commercial Hub,2023
+178,3,Developing,2023
+210,0,Urban Core,2023
+181,3,Developing,2023
+180,3,Developing,2023
+179,2,Distressed,2023
+185,0,Urban Core,2023
+135,3,Developing,2023
+137,2,Distressed,2023
+196,0,Urban Core,2023
+140,1,Green Suburbs,2023
+142,2,Distressed,2023
+143,4,Commercial Hub,2023
+134,0,Urban Core,2023
+198,3,Developing,2023
+199,3,Developing,2023
+200,4,Commercial Hub,2023
+201,4,Commercial Hub,2023
+197,3,Developing,2023
+186,0,Urban Core,2023
+183,2,Distressed,2023
+182,4,Commercial Hub,2023
+131,4,Commercial Hub,2023
+132,4,Commercial Hub,2023
+130,1,Green Suburbs,2023
+133,0,Urban Core,2023
+190,0,Urban Core,2023
+205,0,Urban Core,2023
+98,0,Urban Core,2023
+95,0,Urban Core,2023
+103,3,Developing,2023
+111,4,Commercial Hub,2023
+102,3,Developing,2023
+112,1,Green Suburbs,2023
+107,2,Distressed,2023
+104,4,Commercial Hub,2023
+138,1,Green Suburbs,2023
+106,3,Developing,2023
+188,2,Distressed,2023
+105,1,Green Suburbs,2023
+189,2,Distressed,2023
+191,1,Green Suburbs,2023
+192,3,Developing,2023
+193,2,Distressed,2023
+3,1,Green Suburbs,2024
+17,3,Developing,2024
+15,4,Commercial Hub,2024
+16,3,Developing,2024
+18,3,Developing,2024
+19,4,Commercial Hub,2024
+37,3,Developing,2024
+20,4,Commercial Hub,2024
+21,4,Commercial Hub,2024
+67,4,Commercial Hub,2024
+22,1,Green Suburbs,2024
+23,2,Distressed,2024
+63,1,Green Suburbs,2024
+24,4,Commercial Hub,2024
+25,2,Distressed,2024
+26,2,Distressed,2024
+30,4,Commercial Hub,2024
+27,2,Distressed,2024
+28,2,Distressed,2024
+29,1,Green Suburbs,2024
+35,2,Distressed,2024
+31,4,Commercial Hub,2024
+36,0,Urban Core,2024
+52,0,Urban Core,2024
+32,0,Urban Core,2024
+33,4,Commercial Hub,2024
+34,0,Urban Core,2024
+41,1,Green Suburbs,2024
+53,4,Commercial Hub,2024
+70,4,Commercial Hub,2024
+42,4,Commercial Hub,2024
+54,2,Distressed,2024
+55,2,Distressed,2024
+43,2,Distressed,2024
+44,3,Developing,2024
+45,1,Green Suburbs,2024
+51,4,Commercial Hub,2024
+71,4,Commercial Hub,2024
+56,2,Distressed,2024
+57,4,Commercial Hub,2024
+60,4,Commercial Hub,2024
+61,0,Urban Core,2024
+66,4,Commercial Hub,2024
+68,3,Developing,2024
+69,2,Distressed,2024
+74,1,Green Suburbs,2024
+75,1,Green Suburbs,2024
+86,0,Urban Core,2024
+89,1,Green Suburbs,2024
+80,1,Green Suburbs,2024
+93,2,Distressed,2024
+87,2,Distressed,2024
+81,3,Developing,2024
+94,0,Urban Core,2024
+82,1,Green Suburbs,2024
+76,3,Developing,2024
+96,0,Urban Core,2024
+78,1,Green Suburbs,2024
+77,1,Green Suburbs,2024
+79,2,Distressed,2024
+83,4,Commercial Hub,2024
+84,0,Urban Core,2024
+85,1,Green Suburbs,2024
+125,0,Urban Core,2024
+101,3,Developing,2024
+128,3,Developing,2024
+108,4,Commercial Hub,2024
+113,1,Green Suburbs,2024
+114,2,Distressed,2024
+139,1,Green Suburbs,2024
+115,0,Urban Core,2024
+116,3,Developing,2024
+117,0,Urban Core,2024
+120,4,Commercial Hub,2024
+121,3,Developing,2024
+122,2,Distressed,2024
+123,3,Developing,2024
+124,1,Green Suburbs,2024
+126,1,Green Suburbs,2024
+127,3,Developing,2024
+141,4,Commercial Hub,2024
+144,1,Green Suburbs,2024
+154,1,Green Suburbs,2024
+148,2,Distressed,2024
+149,3,Developing,2024
+155,1,Green Suburbs,2024
+150,4,Commercial Hub,2024
+151,0,Urban Core,2024
+152,3,Developing,2024
+156,2,Distressed,2024
+157,1,Green Suburbs,2024
+158,4,Commercial Hub,2024
+159,3,Developing,2024
+225,4,Commercial Hub,2024
+160,4,Commercial Hub,2024
+161,2,Distressed,2024
+162,3,Developing,2024
+177,1,Green Suburbs,2024
+163,2,Distressed,2024
+167,1,Green Suburbs,2024
+164,0,Urban Core,2024
+165,4,Commercial Hub,2024
+166,0,Urban Core,2024
+168,4,Commercial Hub,2024
+169,2,Distressed,2024
+170,1,Green Suburbs,2024
+171,1,Green Suburbs,2024
+175,2,Distressed,2024
+195,3,Developing,2024
+203,0,Urban Core,2024
+204,0,Urban Core,2024
+206,1,Green Suburbs,2024
+207,1,Green Suburbs,2024
+224,1,Green Suburbs,2024
+208,2,Distressed,2024
+209,3,Developing,2024
+212,0,Urban Core,2024
+220,4,Commercial Hub,2024
+222,2,Distressed,2024
+7,0,Urban Core,2024
+62,3,Developing,2024
+11,2,Distressed,2024
+9,0,Urban Core,2024
+100,2,Distressed,2024
+90,0,Urban Core,2024
+136,0,Urban Core,2024
+88,3,Developing,2024
+145,4,Commercial Hub,2024
+118,3,Developing,2024
+119,0,Urban Core,2024
+59,2,Distressed,2024
+58,3,Developing,2024
+172,4,Commercial Hub,2024
+129,0,Urban Core,2024
+5,3,Developing,2024
+202,3,Developing,2024
+147,3,Developing,2024
+153,3,Developing,2024
+146,2,Distressed,2024
+187,4,Commercial Hub,2024
+184,4,Commercial Hub,2024
+176,0,Urban Core,2024
+174,1,Green Suburbs,2024
+173,2,Distressed,2024
+213,0,Urban Core,2024
+214,0,Urban Core,2024
+215,3,Developing,2024
+216,1,Green Suburbs,2024
+217,1,Green Suburbs,2024
+219,2,Distressed,2024
+218,1,Green Suburbs,2024
+2,0,Urban Core,2024
+4,1,Green Suburbs,2024
+1,1,Green Suburbs,2024
+65,4,Commercial Hub,2024
+10,0,Urban Core,2024
+14,1,Green Suburbs,2024
+13,1,Green Suburbs,2024
+12,3,Developing,2024
+8,1,Green Suburbs,2024
+64,1,Green Suburbs,2024
+46,4,Commercial Hub,2024
+6,0,Urban Core,2024
+91,2,Distressed,2024
+92,0,Urban Core,2024
+99,3,Developing,2024
+97,0,Urban Core,2024
+72,1,Green Suburbs,2024
+73,3,Developing,2024
+38,0,Urban Core,2024
+40,3,Developing,2024
+39,2,Distressed,2024
+47,0,Urban Core,2024
+49,1,Green Suburbs,2024
+48,3,Developing,2024
+50,4,Commercial Hub,2024
+109,3,Developing,2024
+110,4,Commercial Hub,2024
+194,1,Green Suburbs,2024
+221,2,Distressed,2024
+223,4,Commercial Hub,2024
+211,2,Distressed,2024
+178,3,Developing,2024
+210,1,Green Suburbs,2024
+181,4,Commercial Hub,2024
+180,3,Developing,2024
+179,0,Urban Core,2024
+185,3,Developing,2024
+135,2,Distressed,2024
+137,1,Green Suburbs,2024
+196,1,Green Suburbs,2024
+140,3,Developing,2024
+142,0,Urban Core,2024
+143,2,Distressed,2024
+134,3,Developing,2024
+198,3,Developing,2024
+199,1,Green Suburbs,2024
+200,2,Distressed,2024
+201,0,Urban Core,2024
+197,1,Green Suburbs,2024
+186,3,Developing,2024
+183,1,Green Suburbs,2024
+182,1,Green Suburbs,2024
+131,4,Commercial Hub,2024
+132,1,Green Suburbs,2024
+130,1,Green Suburbs,2024
+133,2,Distressed,2024
+190,1,Green Suburbs,2024
+205,0,Urban Core,2024
+98,3,Developing,2024
+95,2,Distressed,2024
+103,1,Green Suburbs,2024
+111,0,Urban Core,2024
+102,3,Developing,2024
+112,2,Distressed,2024
+107,0,Urban Core,2024
+104,1,Green Suburbs,2024
+138,4,Commercial Hub,2024
+106,4,Commercial Hub,2024
+188,2,Distressed,2024
+105,0,Urban Core,2024
+189,3,Developing,2024
+191,0,Urban Core,2024
+192,4,Commercial Hub,2024
+193,2,Distressed,2024
