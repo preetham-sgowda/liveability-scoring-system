@@ -1,0 +1,48 @@
+# ── Orchestration ──
+# apache-airflow==2.8.1 (Not needed for API)
+
+# ── Data Parsing & Scraping ──
+pdfplumber==0.10.3
+scrapy==2.11.0
+
+# ── Geospatial (Removed for Streamlit Cloud deployment) ──
+
+# ── Data Processing ──
+pandas==2.1.4
+numpy==1.26.3
+
+# ── HTTP & API ──
+requests==2.31.0
+fastapi==0.109.0
+uvicorn==0.27.0
+redis==5.0.1
+websockets==12.0
+
+# ── ML & Processing ──
+scikit-learn==1.4.0
+scipy==1.12.0
+xgboost>=2.0.0
+optuna>=3.5.0
+shap>=0.44.0
+joblib>=1.3.0
+
+# ── Spatial Analysis (Removed for Streamlit Cloud deployment) ──
+umap-learn>=0.5.5
+
+# ── Visualization ──
+matplotlib>=3.8.0
+seaborn>=0.13.0
+plotly>=5.18.0
+folium>=0.15.0
+
+# ── Dashboard ──
+streamlit>=1.30.0
+streamlit-folium>=0.18.0
+
+# ── Configuration ──
+python-dotenv==1.0.0
+
+# ── dbt ──
+
+# ── Testing ──
+pytest==7.4.4
