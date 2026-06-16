@@ -16,6 +16,288 @@ import sys
 # Configure page layout
 st.set_page_config(page_title="Liveability Scoring System", layout="wide", page_icon="🏙️")
 
+# ── Elegant Light Theme CSS ──────────────────────────────────────────────
+st.markdown("""
+<style>
+/* ── Google Fonts ─────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ── Root variables ───────────────────────────────────── */
+:root {
+    --primary: #6C63FF;
+    --primary-light: #A5A0FF;
+    --primary-soft: #EDE9FF;
+    --accent-rose: #F87171;
+    --accent-emerald: #34D399;
+    --accent-amber: #FBBF24;
+    --accent-sky: #38BDF8;
+    --bg-main: #FAFBFE;
+    --bg-card: #FFFFFF;
+    --bg-sidebar: linear-gradient(180deg, #F5F3FF 0%, #EDE9FE 50%, #E0E7FF 100%);
+    --text-primary: #2D3748;
+    --text-secondary: #718096;
+    --text-muted: #A0AEC0;
+    --border-soft: #E8ECF4;
+    --shadow-sm: 0 1px 3px rgba(108, 99, 255, 0.06);
+    --shadow-md: 0 4px 12px rgba(108, 99, 255, 0.08);
+    --shadow-lg: 0 8px 30px rgba(108, 99, 255, 0.10);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+}
+
+/* ── Global typography ────────────────────────────────── */
+html, body, [class*="css"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    color: var(--text-primary);
+}
+
+/* ── Main container ───────────────────────────────────── */
+.stApp {
+    background: var(--bg-main) !important;
+}
+
+/* ── Sidebar ──────────────────────────────────────────── */
+section[data-testid="stSidebar"] {
+    background: var(--bg-sidebar) !important;
+    border-right: 1px solid var(--border-soft) !important;
+}
+
+section[data-testid="stSidebar"] .stRadio > label {
+    font-weight: 500;
+    color: var(--text-primary) !important;
+}
+
+section[data-testid="stSidebar"] .stRadio > div > label {
+    border-radius: var(--radius-sm) !important;
+    padding: 6px 12px !important;
+    margin-bottom: 2px !important;
+    transition: all 0.2s ease !important;
+}
+
+section[data-testid="stSidebar"] .stRadio > div > label:hover {
+    background: rgba(108, 99, 255, 0.08) !important;
+}
+
+section[data-testid="stSidebar"] .stRadio > div > label[data-selected="true"],
+section[data-testid="stSidebar"] .stRadio > div > label[aria-checked="true"] {
+    background: rgba(108, 99, 255, 0.12) !important;
+    color: var(--primary) !important;
+    font-weight: 600;
+}
+
+/* ── Headings ─────────────────────────────────────────── */
+h1 {
+    color: var(--text-primary) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 0.3em !important;
+}
+
+h2, h3 {
+    color: var(--text-primary) !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
+}
+
+/* ── Metric cards ─────────────────────────────────────── */
+div[data-testid="stMetric"] {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-soft) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 20px 24px !important;
+    box-shadow: var(--shadow-sm) !important;
+    transition: all 0.3s ease !important;
+}
+
+div[data-testid="stMetric"]:hover {
+    box-shadow: var(--shadow-md) !important;
+    transform: translateY(-2px);
+    border-color: var(--primary-light) !important;
+}
+
+div[data-testid="stMetric"] label {
+    color: var(--text-secondary) !important;
+    font-weight: 500 !important;
+    font-size: 0.82rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+div[data-testid="stMetric"] [data-testid="stMetricValue"] {
+    color: var(--primary) !important;
+    font-weight: 700 !important;
+    font-size: 1.8rem !important;
+}
+
+div[data-testid="stMetric"] [data-testid="stMetricDelta"] svg {
+    display: inline;
+}
+
+/* ── Buttons ──────────────────────────────────────────── */
+.stButton > button {
+    background: linear-gradient(135deg, var(--primary) 0%, #8B83FF 100%) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: var(--radius-sm) !important;
+    padding: 8px 24px !important;
+    font-weight: 600 !important;
+    font-size: 0.88rem !important;
+    letter-spacing: 0.01em;
+    box-shadow: 0 2px 8px rgba(108, 99, 255, 0.25) !important;
+    transition: all 0.25s ease !important;
+}
+
+.stButton > button:hover {
+    box-shadow: 0 4px 16px rgba(108, 99, 255, 0.35) !important;
+    transform: translateY(-1px);
+}
+
+.stButton > button:active {
+    transform: translateY(0);
+}
+
+/* ── Download button ──────────────────────────────────── */
+.stDownloadButton > button {
+    background: var(--bg-card) !important;
+    color: var(--primary) !important;
+    border: 1.5px solid var(--primary) !important;
+    border-radius: var(--radius-sm) !important;
+    font-weight: 600 !important;
+    transition: all 0.25s ease !important;
+}
+
+.stDownloadButton > button:hover {
+    background: var(--primary-soft) !important;
+}
+
+/* ── Selectbox & inputs ───────────────────────────────── */
+.stSelectbox > div > div,
+.stMultiSelect > div > div,
+.stTextInput > div > div > input {
+    border-radius: var(--radius-sm) !important;
+    border-color: var(--border-soft) !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.stSelectbox > div > div:focus-within,
+.stMultiSelect > div > div:focus-within,
+.stTextInput > div > div > input:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12) !important;
+}
+
+/* ── Slider ───────────────────────────────────────────── */
+.stSlider > div > div > div > div {
+    background: var(--primary) !important;
+}
+
+/* ── Expanders ────────────────────────────────────────── */
+.streamlit-expanderHeader {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-soft) !important;
+    border-radius: var(--radius-sm) !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+.streamlit-expanderHeader:hover {
+    border-color: var(--primary-light) !important;
+    background: #F8F7FF !important;
+}
+
+details {
+    border: 1px solid var(--border-soft) !important;
+    border-radius: var(--radius-md) !important;
+    overflow: hidden;
+}
+
+/* ── Dataframes ───────────────────────────────────────── */
+.stDataFrame {
+    border: 1px solid var(--border-soft) !important;
+    border-radius: var(--radius-md) !important;
+    overflow: hidden !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+/* ── Progress bar ─────────────────────────────────────── */
+.stProgress > div > div > div {
+    background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%) !important;
+    border-radius: 10px !important;
+}
+
+/* ── Alerts & info boxes ──────────────────────────────── */
+.stAlert {
+    border-radius: var(--radius-md) !important;
+    border: none !important;
+}
+
+div[data-testid="stNotification"] {
+    border-radius: var(--radius-md) !important;
+}
+
+/* ── Plotly chart containers ──────────────────────────── */
+.stPlotlyChart {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border-soft) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 8px !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+/* ── Folium map container ─────────────────────────────── */
+iframe {
+    border-radius: var(--radius-md) !important;
+    border: 1px solid var(--border-soft) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+/* ── Markdown ─────────────────────────────────────────── */
+.stMarkdown ul {
+    color: var(--text-secondary);
+}
+
+.stMarkdown strong {
+    color: var(--text-primary);
+}
+
+/* ── Column gaps ──────────────────────────────────────── */
+div[data-testid="column"] {
+    padding: 0 8px;
+}
+
+/* ── Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* ── Subtle fade-in animation ─────────────────────────── */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.main .block-container {
+    animation: fadeInUp 0.4s ease-out;
+    max-width: 1200px;
+}
+</style>
+""", unsafe_allow_html=True)
+
 # Add project root to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -53,6 +335,24 @@ df_features = load_data("mart_ward_features")
 df_clusters = load_data("ward_clusters")
 df_decline = load_data("ward_decline_predictions")
 df_shap = load_data("ward_shap_drivers")
+
+# ── Plotly Elegant Light Template ─────────────────────────────────────────
+THEME_COLORS = ['#6C63FF', '#38BDF8', '#34D399', '#FBBF24', '#F87171', '#A78BFA', '#FB923C', '#2DD4BF']
+
+LIGHT_TEMPLATE = go.layout.Template(
+    layout=go.Layout(
+        font=dict(family='Inter, sans-serif', color='#2D3748'),
+        paper_bgcolor='#FFFFFF',
+        plot_bgcolor='#FAFBFE',
+        title=dict(font=dict(size=18, color='#2D3748', family='Inter, sans-serif'), x=0.02),
+        colorway=THEME_COLORS,
+        xaxis=dict(gridcolor='#EDF2F7', linecolor='#E2E8F0', zerolinecolor='#E2E8F0'),
+        yaxis=dict(gridcolor='#EDF2F7', linecolor='#E2E8F0', zerolinecolor='#E2E8F0'),
+        legend=dict(bgcolor='rgba(255,255,255,0)', font=dict(size=12)),
+        margin=dict(l=40, r=20, t=50, b=40),
+        hoverlabel=dict(bgcolor='#FFFFFF', font_size=13, font_family='Inter, sans-serif', bordercolor='#E8ECF4'),
+    )
+)
 
 # Sidebar navigation
 st.sidebar.title("🏙️ Liveability System")
@@ -113,9 +413,9 @@ if page == "1. Landing Map":
                 data=df_scores_latest,
                 columns=["ward_name", "composite_score"],
                 key_on="feature.properties.name_en",
-                fill_color="YlGnBu",
-                fill_opacity=0.7,
-                line_opacity=0.2,
+                fill_color="PuBuGn",
+                fill_opacity=0.65,
+                line_opacity=0.15,
                 legend_name="Composite Liveability Score"
             ).add_to(m)
             
@@ -144,12 +444,26 @@ elif page == "2. Ward Details":
                   latest_data['transit_score'], latest_data['green_score'], latest_data['affordability_score']]
         
         fig = go.Figure()
-        fig.add_trace(go.Scatterpolar(r=values, theta=categories, fill='toself', name=selected_ward))
-        fig.update_layout(polar=dict(radialaxis=dict(visible=True, range=[0, 100])), showlegend=False)
+        fig.add_trace(go.Scatterpolar(
+            r=values, theta=categories, fill='toself', name=selected_ward,
+            fillcolor='rgba(108, 99, 255, 0.15)', line=dict(color='#6C63FF', width=2.5),
+            marker=dict(color='#6C63FF', size=6)
+        ))
+        fig.update_layout(
+            template=LIGHT_TEMPLATE,
+            polar=dict(
+                radialaxis=dict(visible=True, range=[0, 100], gridcolor='#EDF2F7', linecolor='#E2E8F0'),
+                angularaxis=dict(gridcolor='#EDF2F7', linecolor='#E2E8F0'),
+                bgcolor='#FAFBFE'
+            ),
+            showlegend=False
+        )
         st.plotly_chart(fig)
         
         st.subheader("Historical Trend")
-        fig_trend = px.line(ward_data, x="year", y="composite_score", markers=True, title="Composite Score Over Time")
+        fig_trend = px.line(ward_data, x="year", y="composite_score", markers=True, title="Composite Score Over Time",
+                           color_discrete_sequence=['#6C63FF'])
+        fig_trend.update_layout(template=LIGHT_TEMPLATE)
         st.plotly_chart(fig_trend)
 
 # ---- 3. Compare Wards ----
@@ -174,9 +488,11 @@ elif page == "3. Compare Wards":
     
     # Plotly grouped bar
     fig = go.Figure()
-    fig.add_trace(go.Bar(x=comp_df['Dimension'], y=comp_df[ward_a], name=ward_a))
-    fig.add_trace(go.Bar(x=comp_df['Dimension'], y=comp_df[ward_b], name=ward_b))
-    fig.update_layout(barmode='group', title="Dimension Comparison")
+    fig.add_trace(go.Bar(x=comp_df['Dimension'], y=comp_df[ward_a], name=ward_a,
+                        marker_color='#6C63FF', marker_line_width=0, opacity=0.85))
+    fig.add_trace(go.Bar(x=comp_df['Dimension'], y=comp_df[ward_b], name=ward_b,
+                        marker_color='#38BDF8', marker_line_width=0, opacity=0.85))
+    fig.update_layout(template=LIGHT_TEMPLATE, barmode='group', title="Dimension Comparison")
     st.plotly_chart(fig)
 
 # ---- 4. Declining Ward Alerts ----
@@ -213,7 +529,9 @@ elif page == "5. Trends Dashboard":
     trend_data = df_scores[df_scores['ward_name'].isin(selected_wards)]
     
     if not trend_data.empty:
-        fig = px.line(trend_data, x="year", y="composite_score", color="ward_name", title="Composite Score Trends")
+        fig = px.line(trend_data, x="year", y="composite_score", color="ward_name", title="Composite Score Trends",
+                     color_discrete_sequence=THEME_COLORS, markers=True)
+        fig.update_layout(template=LIGHT_TEMPLATE)
         st.plotly_chart(fig)
 
 # ---- 6. Opportunity Wards ----
@@ -228,11 +546,14 @@ elif page == "6. Opportunity Wards":
         
         fig = px.scatter(merged, x="median_price_sqft", y="composite_score", hover_name="ward_name",
                         title="Liveability vs. Property Price",
-                        labels={"median_price_sqft": "Price per Sqft", "composite_score": "Liveability Score"})
+                        labels={"median_price_sqft": "Price per Sqft", "composite_score": "Liveability Score"},
+                        color_discrete_sequence=['#6C63FF'])
+        fig.update_traces(marker=dict(size=10, line=dict(width=1, color='#FFFFFF'), opacity=0.8))
+        fig.update_layout(template=LIGHT_TEMPLATE)
         
-        # Quadrant lines
-        fig.add_hline(y=65, line_dash="dash", line_color="green")
-        fig.add_vline(x=merged['median_price_sqft'].median(), line_dash="dash", line_color="blue")
+        # Quadrant lines with soft theme colors
+        fig.add_hline(y=65, line_dash="dash", line_color='#34D399', line_width=1.5)
+        fig.add_vline(x=merged['median_price_sqft'].median(), line_dash="dash", line_color='#A78BFA', line_width=1.5)
         
         st.plotly_chart(fig)
         
@@ -255,7 +576,9 @@ elif page == "7. City Overview":
     col2.metric("Top Ward", top_ward['ward_name'], f"{top_ward['composite_score']:.1f}")
     col3.metric("Bottom Ward", bottom_ward['ward_name'], f"{bottom_ward['composite_score']:.1f}")
     
-    fig = px.histogram(df_scores_latest, x="composite_score", nbins=20, title="Score Distribution")
+    fig = px.histogram(df_scores_latest, x="composite_score", nbins=20, title="Score Distribution",
+                       color_discrete_sequence=['#6C63FF'], opacity=0.8)
+    fig.update_layout(template=LIGHT_TEMPLATE)
     st.plotly_chart(fig)
 
 # ---- 8. Ward Typology ----
@@ -265,14 +588,20 @@ elif page == "8. Ward Typology":
     if not df_clusters.empty:
         latest_clusters = df_clusters[df_clusters['year'] == df_clusters['year'].max()]
         
-        fig = px.pie(latest_clusters, names='cluster_label', title="Cluster Distribution")
+        fig = px.pie(latest_clusters, names='cluster_label', title="Cluster Distribution",
+                    color_discrete_sequence=THEME_COLORS, hole=0.4)
+        fig.update_traces(textinfo='percent+label', textfont_size=12, marker=dict(line=dict(color='#FFFFFF', width=2)))
+        fig.update_layout(template=LIGHT_TEMPLATE)
         st.plotly_chart(fig)
         
         # Show UMAP if exists
         umap_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "ml", "outputs", "umap_projection.csv")
         if os.path.exists(umap_path):
             umap_df = pd.read_csv(umap_path)
-            fig_umap = px.scatter(umap_df, x="umap_x", y="umap_y", color="cluster_label", hover_name="ward_name", title="UMAP Projection of Ward Clusters")
+            fig_umap = px.scatter(umap_df, x="umap_x", y="umap_y", color="cluster_label", hover_name="ward_name",
+                                  title="UMAP Projection of Ward Clusters", color_discrete_sequence=THEME_COLORS)
+            fig_umap.update_traces(marker=dict(size=8, line=dict(width=1, color='#FFFFFF'), opacity=0.85))
+            fig_umap.update_layout(template=LIGHT_TEMPLATE)
             st.plotly_chart(fig_umap)
     else:
         st.warning("Cluster data not available.")
